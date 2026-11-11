@@ -1,0 +1,1 @@
+{"day": "2026-11-11", "source_failures": [], "at": "2026-11-11T11:23:50Z", "backend": "claude", "model": "claude-haiku-5-5", "fetched": 478, "judged": 454, "failed": 24, "must_read": 29, "maybe": 39, "skip": 369, "excluded": 17, "input_tokens": 460564, "cost_usd": 0.069085, "seconds": 478.1}
