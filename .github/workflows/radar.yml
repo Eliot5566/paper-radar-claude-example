@@ -41,7 +41,7 @@ jobs:
         with:
           config: radar.toml
           backend: claude
-          anthropic-api-key: <redacted>
+          anthropic-api-key: ${{ secrets.ANTHROPIC_API_KEY }}
           limit: ${{ inputs.limit }}
 
       - name: Commit audit trail
