@@ -1,0 +1,79 @@
+# Paper Radar, Claude edition — example config
+# ─────────────────────────────────────────────────────────────────────────────
+# This is the one-minute starting point for running Paper Radar on Claude
+# (Haiku) instead of Jev. Copy this repo, add your Anthropic key as a
+# repository secret, enable Pages, and you get a daily page of the papers
+# worth reading. See README.md for the 3 steps.
+#
+# Validate locally with:  paper-radar check -c radar.toml
+# (needs paper-radar installed: pip install paper-radar)
+# ─────────────────────────────────────────────────────────────────────────────
+
+[radar]
+title = "My Paper Radar (Claude)"
+max_papers = 3000          # safety cap per run
+combine = "max"            # "max": best-matching interest wins · "noisy_or": matching several interests adds up
+
+[jev]
+backend = "claude"         # ANTHROPIC_API_KEY, stored as a GitHub Actions secret — never in this file
+model = "claude-haiku-5-5" # pin a version so results are reproducible
+concurrency = 4            # conservative for the Anthropic API (the Jev default is 8)
+requests_per_minute = 60   # the repo default of 1000 is TypeSafe's limit, not Anthropic's
+price_per_mtok = 0.15      # USD per million input tokens, Haiku list price; used for the cost estimate
+
+# ── Where papers come from ──────────────────────────────────────────────────
+[[sources]]
+type = "arxiv"
+categories = ["cs.AI", "cs.CL", "cs.LG", "cs.IR", "stat.ML"]  # ["*"] = every arXiv archive
+include_cross_lists = true
+
+# ── What you care about ─────────────────────────────────────────────────────
+# These are the same three interests the first-look Claude calibration was
+# measured on, so the thresholds below mean the same thing as in that write-up.
+# Each interest is ONE plain-English statement about a paper:
+#   • one idea per interest; split "A and B" into two interests
+#   • no negations here; put "not X" into an [[exclude]] entry phrased positively
+[[interests]]
+id = "agent_eval"
+label = "Agent evaluation"
+text = "Benchmarks or methods for evaluating LLM agents on multi-step tool-use tasks"
+
+[[interests]]
+id = "calibration"
+label = "LLM calibration"
+text = "Calibration or uncertainty estimation of language model predictions"
+
+[[interests]]
+id = "retrieval"
+label = "RAG & retrieval"
+text = "Retrieval-augmented generation, rerankers, or retrieval quality for question answering"
+weight = 0.9               # optional, 0–1: down-weight interests that are nice-to-have
+
+# Papers matching an exclusion (probability >= thresholds.exclude) are filtered out.
+[[exclude]]
+id = "medical_imaging"
+label = "Medical imaging"
+text = "The main application is medical imaging such as CT or MRI scans"
+
+[thresholds]
+# First-look Claude thresholds from docs/claude-calibration.md in
+# Eliot5566/JEV-Paper-Radar (49 papers, 2026-11-11): must_read 0.65 hits
+# precision ≥90%, maybe 0.35 keeps recall ≥90% on that set. These are NOT
+# the Jev thresholds (0.80 / 0.50) — do not copy those for Claude.
+# And they are first-look, not user-validated: label ~30 of your own papers
+# (paper-radar label …) and re-fit with `paper-radar calibrate`.
+must_read = 0.65
+maybe = 0.35
+exclude = 0.80
+
+[signals]                  # extra per-paper questions, shown as tags
+paper_type = true          # Choice: new method / benchmark / dataset / survey / theory / ...
+code_release = true        # Noul: does the abstract say code or data is released?
+evidence = false           # Score: how much evaluation the abstract reports
+
+[output]
+site_dir = "site"          # static site for GitHub Pages
+data_dir = "data"          # audit trail: every decision, committed to the repo
+site_url = ""              # e.g. "https://<you>.github.io/paper-radar-claude-example" (used in RSS and digests)
+feed_days = 7
+near_misses = 15
