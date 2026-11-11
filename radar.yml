@@ -1,0 +1,73 @@
+# Daily Paper Radar on Claude (Haiku).
+# Runs Paper Radar as a GitHub Action, then publishes the daily page to
+# GitHub Pages. The radar itself is one step:
+#   uses: Eliot5566/JEV-Paper-Radar@v0.1.3
+# Everything else here is plumbing: commit the audit trail (data/) and
+# deploy site/ to Pages. Pin to a release tag — @v0.1.3 is the first tag
+# whose action.yml supports the Claude backend with these inputs.
+name: Paper Radar
+
+on:
+  schedule:
+    # 02:00 UTC Mon–Fri (10:00 in Taipei): after arXiv's 20:00 US-Eastern announcement.
+    - cron: "0 2 * * 1-5"
+  workflow_dispatch:
+    inputs:
+      limit:
+        description: "Judge at most N papers (leave blank for no limit)"
+        required: false
+        default: ""
+
+permissions:
+  contents: write   # commit the audit trail in data/
+  pages: write      # publish the site
+  id-token: write   # deploy to Pages
+
+concurrency:
+  group: paper-radar
+  cancel-in-progress: false
+
+jobs:
+  radar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      # The key comes from a repository secret (Settings → Secrets and
+      # variables → Actions → ANTHROPIC_API_KEY). Never put it in this file.
+      # Without it this step fails — that is expected until you add the secret.
+      - uses: Eliot5566/JEV-Paper-Radar@v0.1.3
+        with:
+          config: radar.toml
+          backend: claude
+          anthropic-api-key: <redacted>
+          limit: ${{ inputs.limit }}
+
+      - name: Commit audit trail
+        run: |
+          git config user.name "paper-radar[bot]"
+          git config user.email "paper-radar[bot]@users.noreply.github.com"
+          git add -A data
+          if git diff --cached --quiet; then
+            echo "No new decisions to commit"
+          else
+            git commit -m "radar: $(date -u +%F)"
+            git push || (git pull --rebase && git push)
+          fi
+
+      - uses: actions/configure-pages@v5
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+
+  deploy:
+    needs: radar
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
