@@ -2,10 +2,10 @@
 
 A one-minute starting point for a daily arXiv radar that runs on **Claude
 (Haiku)** instead of Jev. Fork this repo, add your key, and every weekday
-morning you get a page of the few new papers worth reading.
+you get a page of the few new papers worth reading.
 
 Built on [paper-radar](https://github.com/Eliot5566/JEV-Paper-Radar)
-(`Eliot5566/JEV-Paper-Radar@v0.1.3` as a GitHub Action) and
+(`Eliot5566/JEV-Paper-Radar@v0.1.5` as a GitHub Action) and
 [`paper-radar` on PyPI](https://pypi.org/project/paper-radar/).
 
 ## Setup in 3 steps — about a minute
@@ -19,7 +19,7 @@ Built on [paper-radar](https://github.com/Eliot5566/JEV-Paper-Radar)
 3. **Enable Pages and run it.** Settings → Pages → Build and deployment →
    Source: **GitHub Actions**. Then Actions → Paper Radar → Run workflow.
    The first run takes a few minutes; after that it runs weekdays at
-   02:00 UTC (10:00 Taipei) and the page updates itself.
+   06:00 UTC (14:00 Taipei) and the page updates itself.
 
 Your page lands at `https://<you>.github.io/paper-radar-claude-example/`.
 
