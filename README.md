@@ -8,17 +8,22 @@ Built on [paper-radar](https://github.com/Eliot5566/JEV-Paper-Radar)
 (`Eliot5566/JEV-Paper-Radar@v0.2.0` as a GitHub Action) and
 [`paper-radar` on PyPI](https://pypi.org/project/paper-radar/).
 
-## Setup in 3 steps — about a minute
+[English Claude guide](https://github.com/Eliot5566/JEV-Paper-Radar/blob/main/docs/claude-quickstart.md) · [繁體中文教學](https://github.com/Eliot5566/JEV-Paper-Radar/blob/main/docs/claude-quickstart.zh-TW.md) · [Setup help](https://github.com/Eliot5566/JEV-Paper-Radar/issues/new?template=setup-help.yml)
+
+The guide starts with a fictional offline demo requiring no API key. Live judging uses separately billed Anthropic API access, not a Claude chat subscription.
+
+## Setup in 3 steps
 
 1. **Use this repo.** Fork it (or "Use this template" if that button is
-   on), and edit `radar.toml` to say what you care about — the three
+   on). Open Actions and enable workflows in the new fork. Edit `radar.toml` to say what you care about — the three
    interests in it now are just examples.
 2. **Add your key.** Settings → Secrets and variables → Actions → New
    repository secret, name `ANTHROPIC_API_KEY`, value your Anthropic API
    key. Keys are never committed; the workflow only reads the secret.
 3. **Enable Pages and run it.** Settings → Pages → Build and deployment →
    Source: **GitHub Actions**. Then Actions → Paper Radar → Run workflow.
-   The first run takes a few minutes; after that it runs weekdays at
+   Enter `20` in the limit field for the first run. This limits papers, not dollar spending; retries and repeated runs can add charges.
+   After that it runs weekdays at
    06:00 UTC (14:00 Taipei) and the page updates itself.
 
 Your page lands at `https://<you>.github.io/paper-radar-claude-example/`.
