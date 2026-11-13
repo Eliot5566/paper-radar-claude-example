@@ -1,9 +1,9 @@
 # Daily Paper Radar on Claude (Haiku).
 # Runs Paper Radar as a GitHub Action, then publishes the daily page to
 # GitHub Pages. The radar itself is one step:
-#   uses: Eliot5566/JEV-Paper-Radar@v0.1.5
+#   uses: Eliot5566/JEV-Paper-Radar@v0.2.0
 # Everything else here is plumbing: commit the audit trail (data/) and
-# deploy site/ to Pages. Pin to a release tag — currently @v0.1.5.
+# deploy site/ to Pages. Pin to a release tag — currently @v0.2.0.
 name: Paper Radar
 
 on:
@@ -36,7 +36,7 @@ jobs:
       # The key comes from a repository secret (Settings → Secrets and
       # variables → Actions → ANTHROPIC_API_KEY). Never put it in this file.
       # Without it this step fails — that is expected until you add the secret.
-      - uses: Eliot5566/JEV-Paper-Radar@v0.1.5
+      - uses: Eliot5566/JEV-Paper-Radar@v0.2.0
         with:
           config: radar.toml
           backend: claude

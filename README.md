@@ -5,7 +5,7 @@ A one-minute starting point for a daily arXiv radar that runs on **Claude
 you get a page of the few new papers worth reading.
 
 Built on [paper-radar](https://github.com/Eliot5566/JEV-Paper-Radar)
-(`Eliot5566/JEV-Paper-Radar@v0.1.5` as a GitHub Action) and
+(`Eliot5566/JEV-Paper-Radar@v0.2.0` as a GitHub Action) and
 [`paper-radar` on PyPI](https://pypi.org/project/paper-radar/).
 
 ## Setup in 3 steps — about a minute
@@ -23,9 +23,9 @@ Built on [paper-radar](https://github.com/Eliot5566/JEV-Paper-Radar)
 
 Your page lands at `https://<you>.github.io/paper-radar-claude-example/`.
 
-> **Without the key the workflow fails** — that is expected. Nothing runs
-> until you add `ANTHROPIC_API_KEY`; the Action never prints the key in
-> the log.
+> **Without the key the daily judging workflow fails** — that is expected.
+> Add `ANTHROPIC_API_KEY` before running it. The separate configuration check
+> and offline demo do not need a key.
 
 ## What you get
 
@@ -34,15 +34,25 @@ Your page lands at `https://<you>.github.io/paper-radar-claude-example/`.
 - An audit trail in `data/`: every decision, probability and model
   version, committed by the workflow, so next day's run dedupes against
   it and you can check the tool against your own judgement later.
-- Cost, measured not guessed: on 2026-11-11 Claude Haiku judged 50
-  papers for **50,125 input tokens, $0.0075** — about **$0.00015 per
-  paper judged** (input tokens only, at Haiku's $0.15 per million input
-  tokens). That day's listing for these five categories was 478 papers,
-  so a full run that day would have been roughly **$0.07**. It scales
-  with papers judged: a wider watchlist costs more. Note the tool counts
-  input tokens only — Anthropic also bills the short JSON replies
-  (output tokens), which the tool does not track, so the real bill is
-  somewhat higher than the input-only figure.
+- Request usage in `data/usage.jsonl`: input, output and cache tokens,
+  including repairs and failures. Missing usage or a required rate produces
+  `cost_usd: null` (cost unknown), not a zero bill. Optional TL;DR generation
+  is outside this accounting scope.
+
+## Cost assumptions and historical measurements
+
+The config pins Claude Haiku 5.5 and uses the ≤100K prompt rates checked on
+2026-11-13: **$0.10 / million input tokens** and **$0.50 / million output
+tokens**. Other models, prompt lengths, caching and provider discounts may
+use different rates. Update the config when your applicable pricing changes.
+[Official pricing](https://www.anthropic.com/claude/haiku).
+
+The earlier 2026-11-11 experiment logged 50,125 input tokens and estimated
+$0.0075 using its configured $0.15 / million input tokens. That was an
+**input-only historical estimate**, not a provider invoice; it did not track
+output or all retry charges. Version 0.2.0 adds the request audit so future
+runs can be inspected without relabelling those historical estimates.
+[Accounting fields and limits](https://github.com/Eliot5566/JEV-Paper-Radar/blob/v0.2.0/docs/usage-and-cost.md).
 
 ## About the numbers — read this before trusting them
 
@@ -64,6 +74,24 @@ Two things worth knowing:
   for either backend on the daily radar. Treat both backends the same
   way: label ~30 of your own papers (`paper-radar label …`) and re-fit
   with `paper-radar calibrate`.
+
+## Check the setup without an API key
+
+```bash
+python -m pip install paper-radar==0.2.0
+paper-radar check -c radar.toml
+paper-radar demo --out demo
+```
+
+The CI workflow runs these checks and the fictional offline demo. It does
+not fetch a live corpus or call a paid model. Keep independent human-labelled
+holdout data separate from the examples before making accuracy claims.
+
+## License
+
+Code, workflows and configuration are MIT-licensed; see [LICENSE](LICENSE).
+Cached paper titles, abstracts and other third-party content retain their
+original source terms. The software license does not relicense that content.
 
 ## Links
 

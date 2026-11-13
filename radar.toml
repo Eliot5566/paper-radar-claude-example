@@ -19,7 +19,9 @@ backend = "claude"         # ANTHROPIC_API_KEY, stored as a GitHub Actions secre
 model = "claude-haiku-5-5" # pin a version so results are reproducible
 concurrency = 4            # conservative for the Anthropic API (the Jev default is 8)
 requests_per_minute = 60   # the repo default of 1000 is TypeSafe's limit, not Anthropic's
-price_per_mtok = 0.15      # USD per million input tokens, Haiku list price; used for the cost estimate
+price_per_mtok = 0.10      # USD/MTok input, Haiku 5.5 prompts up to 100K tokens
+output_price_per_mtok = 0.50
+pricing_as_of = "2026-11-13" # verify the rates for your model and prompt-length tier
 
 # ── Where papers come from ──────────────────────────────────────────────────
 [[sources]]
@@ -29,7 +31,7 @@ include_cross_lists = true
 
 # ── What you care about ─────────────────────────────────────────────────────
 # These are the same three interests the first-look Claude calibration was
-# measured on, so the thresholds below mean the same thing as in that write-up.
+# measured on. The thresholds below are starting points, not validation on future data.
 # Each interest is ONE plain-English statement about a paper:
 #   • one idea per interest; split "A and B" into two interests
 #   • no negations here; put "not X" into an [[exclude]] entry phrased positively
