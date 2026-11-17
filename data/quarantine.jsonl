@@ -5,3 +5,4 @@
 {"id": "arxiv:2611.17239", "failures": 2, "first_failed": "2026-11-13", "last_failed": "2026-11-13", "last_reason": "Malformed Claude response: 'i_agent_eval' noul must be a number in [0, 1]"}
 {"id": "arxiv:2611.17484", "failures": 1, "first_failed": "2026-11-16", "last_failed": "2026-11-16", "last_reason": "Malformed Claude response: 'i_agent_eval' noul must be a number in [0, 1]"}
 {"id": "arxiv:2611.18142", "failures": 1, "first_failed": "2026-11-16", "last_failed": "2026-11-16", "last_reason": "Malformed Claude response: 'i_agent_eval' noul must be a number in [0, 1]"}
+{"id": "arxiv:2611.20204", "failures": 1, "first_failed": "2026-11-17", "last_failed": "2026-11-17", "last_reason": "Malformed Claude response: 'i_agent_eval' noul must be a number in [0, 1]"}
