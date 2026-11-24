@@ -1,3 +1,4 @@
+{"id": "arxiv:2606.28090", "failures": 1, "first_failed": "2026-11-24", "last_failed": "2026-11-24", "last_reason": "Malformed Claude response: 'i_agent_eval' noul must be a number in [0, 1]"}
 {"id": "arxiv:2611.14903", "failures": 2, "first_failed": "2026-11-13", "last_failed": "2026-11-13", "last_reason": "Malformed Claude response: 'i_agent_eval' noul must be a number in [0, 1]"}
 {"id": "arxiv:2611.14996", "failures": 1, "first_failed": "2026-11-13", "last_failed": "2026-11-13", "last_reason": "Malformed Claude response: 'i_agent_eval' noul must be a number in [0, 1]"}
 {"id": "arxiv:2611.16301", "failures": 2, "first_failed": "2026-11-13", "last_failed": "2026-11-13", "last_reason": "Malformed Claude response: 'i_agent_eval' noul must be a number in [0, 1]"}
@@ -12,3 +13,16 @@
 {"id": "arxiv:2611.27375", "failures": 1, "first_failed": "2026-11-23", "last_failed": "2026-11-23", "last_reason": "Malformed Claude response: 'i_agent_eval' noul must be a number in [0, 1]"}
 {"id": "arxiv:2611.27376", "failures": 1, "first_failed": "2026-11-23", "last_failed": "2026-11-23", "last_reason": "Malformed Claude response: 'i_agent_eval' noul must be a number in [0, 1]"}
 {"id": "arxiv:2611.27823", "failures": 1, "first_failed": "2026-11-23", "last_failed": "2026-11-23", "last_reason": "Malformed Claude response: 'i_agent_eval' noul must be a number in [0, 1]"}
+{"id": "arxiv:2611.28525", "failures": 1, "first_failed": "2026-11-24", "last_failed": "2026-11-24", "last_reason": "Malformed Claude response: 'i_agent_eval' noul must be a number in [0, 1]"}
+{"id": "arxiv:2611.28564", "failures": 1, "first_failed": "2026-11-24", "last_failed": "2026-11-24", "last_reason": "Malformed Claude response: 'i_agent_eval' noul must be a number in [0, 1]"}
+{"id": "arxiv:2611.28573", "failures": 1, "first_failed": "2026-11-24", "last_failed": "2026-11-24", "last_reason": "Malformed Claude response: 'i_agent_eval' noul must be a number in [0, 1]"}
+{"id": "arxiv:2611.28824", "failures": 1, "first_failed": "2026-11-24", "last_failed": "2026-11-24", "last_reason": "Malformed Claude response: 'i_agent_eval' noul must be a number in [0, 1]"}
+{"id": "arxiv:2611.28854", "failures": 1, "first_failed": "2026-11-24", "last_failed": "2026-11-24", "last_reason": "Malformed Claude response: 'i_agent_eval' noul must be a number in [0, 1]"}
+{"id": "arxiv:2611.28971", "failures": 1, "first_failed": "2026-11-24", "last_failed": "2026-11-24", "last_reason": "Malformed Claude response: 'i_agent_eval' noul must be a number in [0, 1]"}
+{"id": "arxiv:2611.29041", "failures": 1, "first_failed": "2026-11-24", "last_failed": "2026-11-24", "last_reason": "Malformed Claude response: 'i_agent_eval' noul must be a number in [0, 1]"}
+{"id": "arxiv:2611.29303", "failures": 1, "first_failed": "2026-11-24", "last_failed": "2026-11-24", "last_reason": "Malformed Claude response: 'i_agent_eval' noul must be a number in [0, 1]"}
+{"id": "arxiv:2611.29579", "failures": 1, "first_failed": "2026-11-24", "last_failed": "2026-11-24", "last_reason": "Malformed Claude response: 'i_agent_eval' noul must be a number in [0, 1]"}
+{"id": "arxiv:2611.30006", "failures": 1, "first_failed": "2026-11-24", "last_failed": "2026-11-24", "last_reason": "Malformed Claude response: 'i_agent_eval' noul must be a number in [0, 1]"}
+{"id": "arxiv:2611.30738", "failures": 1, "first_failed": "2026-11-24", "last_failed": "2026-11-24", "last_reason": "Malformed Claude response: 'i_agent_eval' noul must be a number in [0, 1]"}
+{"id": "arxiv:2611.30909", "failures": 1, "first_failed": "2026-11-24", "last_failed": "2026-11-24", "last_reason": "Malformed Claude response: 'i_agent_eval' noul must be a number in [0, 1]"}
+{"id": "arxiv:2611.31160", "failures": 1, "first_failed": "2026-11-24", "last_failed": "2026-11-24", "last_reason": "Malformed Claude response: 'i_agent_eval' noul must be a number in [0, 1]"}
