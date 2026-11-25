@@ -21,6 +21,8 @@ concurrency = 4            # conservative for the Anthropic API (the Jev default
 requests_per_minute = 60   # the repo default of 1000 is TypeSafe's limit, not Anthropic's
 price_per_mtok = 0.10      # USD/MTok input, Haiku 5.5 prompts up to 100K tokens
 output_price_per_mtok = 0.50
+cache_read_price_per_mtok = 0.01       # Haiku 5.5 cache reads: 0.1x input
+cache_creation_price_per_mtok = 0.125  # 5-minute cache writes: 1.25x input
 pricing_as_of = "2026-11-13" # verify the rates for your model and prompt-length tier
 
 # ── Where papers come from ──────────────────────────────────────────────────
